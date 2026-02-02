@@ -1,21 +1,61 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #222;
+    background-color: #1a1a1a;
     display: flex;
-    justify_content: center;
+    justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
+    color: white;
+    font-family: sans-serif;
 }
 
 #game-container {
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: relative;
+    /* For absolute positioning of button */
+    aspect-ratio: 16/9;
+    width: 90vw;
+    max-width: 1280px;
+    max-height: 90vh;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 canvas {
-    display: block;
-    background-color: #000;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
-/* Font loading if necessary, though we use standard fonts mostly */
+#fullscreen-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+    font-family: inherit;
+    z-index: 10;
+}
+
+#fullscreen-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Hide button in fullscreen to avoid distraction, or keep it if preferred (usually hide or change to 'exit') */
+:fullscreen #fullscreen-btn {
+    opacity: 0.3;
+}
+
+:fullscreen #fullscreen-btn:hover {
+    opacity: 1;
+}

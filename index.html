@@ -12,7 +12,22 @@
 <body>
     <div id="game-container">
         <canvas id="gameCanvas" width="1280" height="720"></canvas>
+        <button id="fullscreen-btn"
+            onclick="document.getElementById('gameCanvas').dispatchEvent(new Event('toggle-fullscreen'))">⛶
+            Fullscreen</button>
     </div>
+    <script>
+        // Bridge button click to game class
+        document.getElementById('fullscreen-btn').addEventListener('click', () => {
+            // We can access the instance if we store it, or just use simple DOM fullscreen here
+            const container = document.getElementById('game-container');
+            if (!document.fullscreenElement) {
+                container.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        });
+    </script>
     <script src="game.js"></script>
 </body>
 

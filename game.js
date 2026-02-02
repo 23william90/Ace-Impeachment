@@ -171,8 +171,12 @@ class Game {
 
     handleInput(e) {
         const rect = this.canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const scaleX = this.canvas.width / rect.width;
+        const scaleY = this.canvas.height / rect.height;
+
+        const x = (e.clientX - rect.left) * scaleX;
+        const y = (e.clientY - rect.top) * scaleY;
+
 
         if (this.currentScene === 'title') {
             // Check button collision (centered)
@@ -207,6 +211,21 @@ class Game {
                     break;
                 }
             }
+        }
+    }
+
+
+
+    toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            const container = document.getElementById('game-container');
+            if (container) {
+                container.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            }
+        } else {
+            document.exitFullscreen();
         }
     }
 
